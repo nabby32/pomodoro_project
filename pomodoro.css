@@ -1,5 +1,4 @@
 html {
-	position: relative;
 	min-height: 100%;
 	margin: 0px;
 	padding: 0px;
@@ -10,20 +9,21 @@ body {
 	margin: 0 auto 0 auto;
 	width: full;
 	max-width: 1100px;
+	min-width: 705px;
+	height: full;
 	padding: 0px;
 	overflow: none;
-	background-color: black;
 }
 
 #header {
 	position: relative;
-	margin: -10px 0 -20px 0;
+	margin: 0 0 0 0;
 	height: 70px;
 	width: full;
 	padding-top: 10px;
-	background-color: #88d2f7;
+	background-color: #d4d4d4;
 	border-bottom: 2px solid #0c73a7;
-	border-radius: 0 0 5px 5px;
+	border-radius: 0 0 2px 2px;
 }
 
 #header > p {
@@ -49,44 +49,54 @@ body {
 #under-header-body {
 	z-index: -1;
 	position: absolute;
-	height: full;
+	height: 655px;
 	width: 100%;
-	background-color: white;
+	background-color: #FC510B;
 	padding: 0px;
 	margin: 0px;
 }
 
-#left-div {
+#left-div, #right-div {
 	display: inline-block;
-	float: left;
-	height: 600px;
-	width: 33%;
-	max-width: 400px;
-	background-color: green;
-	border-radius: 0px 400px 400px 0;
+	position: relative;
+	height: 630px;
+	width: 35%;
+	max-width: 665px;
+	background-color: #88d2f7;
+}
+
+#left-div {
+	float:left;
+	margin-right: -400px;
+	border-radius: 0 30px 300px 50px;
+	border-right: solid 2px #0c73a7;
+	border-bottom: solid 2px #0c73a7;
 }
 
 #right-div {
-	display: inline-block;
-	position: relative;
 	float: right;
-	height: 800px;
-	width: 33%;
-	max-width: 400px;
-	background-color: green;
-	border-radius: 400px 0px 0px 400px;
+	margin-left: -400px;
+	top: -500px;
+	border-radius: 30px 0px 50px 300px;
+	border-left: solid 2px #0c73a7;
+	border-bottom: solid 2px #0c73a7;
 }
 
-
-#timer-holder {
+#settings-holder {
 	z-index: 3;
-	display: inline-block;
+	display: block;
 	position: relative;
-	left: -100px;
-	height: 600px;
-	width: 600px;
-	background-color: #FC510B;
-	border-radius: 3000px;
-	margin: 30px auto 0 auto;
-	border: solid 1px #b13302;
+	height: 448px;
+	width: 448px;
+	margin: 50px auto 0px auto;
+	background-color: white;
+	border-radius: 300px;
+	border: solid 1px black;
+	vertical-align: middle;
+	line-height: 450px;
+}
+
+.button {
+	display: inline-block;
+	margin: 0 auto 0 auot;
 }
