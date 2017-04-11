@@ -1,0 +1,92 @@
+html {
+	position: relative;
+	min-height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	position: relative;
+	margin: 0 auto 0 auto;
+	width: full;
+	max-width: 1100px;
+	padding: 0px;
+	overflow: none;
+	background-color: black;
+}
+
+#header {
+	position: relative;
+	margin: -10px 0 -20px 0;
+	height: 70px;
+	width: full;
+	padding-top: 10px;
+	background-color: #88d2f7;
+	border-bottom: 2px solid #0c73a7;
+	border-radius: 0 0 5px 5px;
+}
+
+#header > p {
+	position: relative;
+	line-height: 20px;
+	width: 300px;
+}
+
+#page-title {
+	font-family: arial, sans-serif;
+	font-size: 20px;
+	color: #FC510B;
+	margin: 10px 0 0 15px;
+}
+
+#credit {
+	font-family: arial, sans-serif;
+	font-size: 16px;
+	color: #FC510B;
+	margin: 10px 0 0 15px;
+}
+
+#under-header-body {
+	z-index: -1;
+	position: absolute;
+	height: full;
+	width: 100%;
+	background-color: white;
+	padding: 0px;
+	margin: 0px;
+}
+
+#left-div {
+	display: inline-block;
+	float: left;
+	height: 600px;
+	width: 33%;
+	max-width: 400px;
+	background-color: green;
+	border-radius: 0px 400px 400px 0;
+}
+
+#right-div {
+	display: inline-block;
+	position: relative;
+	float: right;
+	height: 800px;
+	width: 33%;
+	max-width: 400px;
+	background-color: green;
+	border-radius: 400px 0px 0px 400px;
+}
+
+
+#timer-holder {
+	z-index: 3;
+	display: inline-block;
+	position: relative;
+	left: -100px;
+	height: 600px;
+	width: 600px;
+	background-color: #FC510B;
+	border-radius: 3000px;
+	margin: 30px auto 0 auto;
+	border: solid 1px #b13302;
+}
