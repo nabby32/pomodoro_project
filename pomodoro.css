@@ -46,6 +46,22 @@ body {
 	margin: 10px 0 0 15px;
 }
 
+#toggle-holder {
+	position: relative;
+	top: -10px;
+	right: 10px;
+	float: right;
+	height: 38px;
+	width: 138px;
+	border: solid 1px black;
+	font-family: arial, sans-serif;
+	font-size: 20px;
+	color: #FC510B;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 40px;
+}
+
 #under-header-body {
 	z-index: -1;
 	position: absolute;
@@ -92,11 +108,83 @@ body {
 	background-color: white;
 	border-radius: 300px;
 	border: solid 1px black;
+}
+
+#timer-holder {
+	height: 150px;
+	width: 370px;
+	margin: 90px auto 0px auto;
+	border-radius: 10px;
+}
+
+#timer-holder > * { 
+	display: inline-block;
+	font-family: trebuchet ms, sans-serif;
+	font-size: 85px;
+	margin: auto;
+}
+
+.timer {
+	height: 100px;
+	width: 90px;
+	text-align: center;
 	vertical-align: middle;
-	line-height: 450px;
+	line-height: 100px;
+}
+
+#min-holder {
+	margin-left: 3px;
+}
+
+#setting-buttons {
+	width: 350px;
+	height: 70px;
+	position: relative;
+	margin: 0 auto 0 auto;
+	background-color: green;
+	font-family: abel, sans-serif;
+	font-family: trebuchet ms, sans-serif;
+}
+
+#setting-buttons *  {
+	display: inline-block;
+	height: 50px;
+	width: 50px;
+	background-color: red;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 50px;
+}
+
+#setting-buttons-label {
+	height: 50px;
+	width: 350px;
+	margin: 0 auto 0 auto;
+	background-color: orange;
+}
+
+#setting-buttons-label > p {
+	width: 100px;
+	background-color: blue;
+	display: inline;
+	font-family: trebuchet ms, sans-serif;
+	font-size: 20px;
+	margin-top: 15px;
+}
+
+
+
+#go-stop-buttons {
+	width: 210px;
+	margin: 0px 0 0 122px;
 }
 
 .button {
+	height: 50px;
+	width: 100px;
+	border-radius: 6px;
+	font-family: trebuchet ms, sans-serif;
 	display: inline-block;
-	margin: 0 auto 0 auot;
+	border: 1px solid black;
+	margin: 0 auto 0 auto;
 }
