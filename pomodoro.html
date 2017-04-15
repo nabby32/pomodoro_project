@@ -19,22 +19,26 @@
 		<div id = "settings-holder">
 			<div id = "timer-holder">
 				<div class = "timer" id= "min-holder">25</div>
-				<span>:</span>
+				<p>:</p>
 				<div class = "timer" id = "sec-holder">00</div>
-				<span>:</span>
+				<p>:</p>
 				<div class = "timer" id = "millsec-holder">00</div>
 			</div>
 			<div id = "setting-buttons">
-				<span id = "min-up">+</span>
-				<p id = "min">25</p>
-				<span id = "min-down">-</span>
-				<span id = "sec-up">+</span>
-				<p id = "sec">00</p>
-				<span id = "sec-down">-</span>
+				<div id = "min-settings">
+					<img id = "min-up" class = "chevron" src = "./images/chevron-up.jpg">
+					<p id = "min">25</p>
+					<img id = "min-down" class = "chevron" src = "./images/chevron-down.jpeg" />
+				</div>
+				<div id = "sec-settings">
+					<img id = "sec-up" class = "chevron" src = "./images/chevron-up.jpg" />
+					<p id = "sec">00</p>
+					<img id = "sec-down" class = "chevron" src = "./images/chevron-down.jpeg" />
+				</div>
 			</div>
 			<div id = "setting-buttons-label">
-				<p>Track Time</p>
-				<p>Pit Time</p>
+				<p id = "track-time">Track Time</p>
+				<p id = "pit-time">Pit Time</p>
 			</div>
 			<div id = "go-stop-buttons">
 				<button class = "button" id = "timer-go">Join the Track</button>
