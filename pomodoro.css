@@ -1,7 +1,13 @@
 html {
-	min-height: 100%;
+	mi-height: 100%;
 	margin: 0px;
 	padding: 0px;
+	overflow: none;
+}
+
+#flash {
+	position: relative;
+	z-index: 5;
 }
 
 body {
@@ -48,6 +54,7 @@ body {
 
 #toggle-holder {
 	position: relative;
+	background-color: #d4d4d4;
 	top: -10px;
 	right: 10px;
 	float: right;
@@ -59,7 +66,7 @@ body {
 	color: #FC510B;
 	text-align: center;
 	vertical-align: middle;
-	line-height: 40px;
+	line-height: 35px;
 }
 
 #under-header-body {
@@ -115,25 +122,11 @@ body {
 	width: 350px;
 	margin: 90px auto 0px auto;
 	border-radius: 10px;
-}
-
-#timer-holder > * { 
-	display: inline-block;
 	font-family: trebuchet ms, sans-serif;
 	font-size: 85px;
-	margin: auto;
-}
-
-.timer {
-	height: 85px;
-	width: 90px;
 	text-align: center;
-}
-
-#timer-holder > p {
-	position: relative;
-	height: 80px;
-	top: -5px;
+	vertical-align: middle;
+	line-height: 120px;
 }
 
 #setting-buttons {
@@ -143,12 +136,12 @@ body {
 	margin: 0 auto 0 auto;	
 }
 
-#min-settings, #sec-settings {
+#min-settings, #break-settings {
 	display: inline-block;
 	margin: 0 0 0 35px;
 }
 
-#min-settings > p, #sec-settings > p  {
+#min-settings > p, #break-settings > p  {
 	display: inline-block;
 	height: 30px;
 	width: 45px;
@@ -180,11 +173,11 @@ body {
 }
 
 #track-time {
-	margin: 0 0 0 20px;
+	margin: 0 0 0 18px;
 }
 
 #pit-time {
-	margin: 0 0 0 15px;
+	margin: 0 0 0 17px;
 }
 
 
