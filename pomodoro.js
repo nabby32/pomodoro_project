@@ -1,10 +1,14 @@
 $(document).ready(function () {
 
 //Global Variables
+var raceMode = true;
 var workTime = 150000;
 var breakTime = 30000;
 var currentTime = workTime;
-var pomTime = currentTime;
+var currentBreak = breakTime;
+var testPom = currentTime;
+var interval = true;
+var onDeck = "Pit";
 
 //Set Page Load Timer Value
 $("#timer-holder").text(centisecToMinString(workTime));
@@ -37,7 +41,7 @@ $("#min-down").click(function () {
 });
 
 $("#break-up").click(function () {
-	var currentBreak = $("#sec").text();
+	currentBreak = $("#sec").text();
 	if (currentBreak < 15) {
 		currentBreak ++;
 	}
@@ -45,11 +49,11 @@ $("#break-up").click(function () {
 		alert("We need to get you back on track sooner.")
 	}
 	$("#sec").text(currentBreak);
-	currentTime = minToCentiseconds(currentBreak);
+	breakTime = minToCentiseconds(currentBreak);
 });
 
 $("#break-down").click(function () {
-	var currentBreak = $("#sec").text();
+	currentBreak = $("#sec").text();
 	if (currentBreak > 1) {
 		currentBreak --;
 	}
@@ -57,18 +61,45 @@ $("#break-down").click(function () {
 		alert("You need to pit for more fuel and tires at least.")
 	}
 	$("#sec").text(currentBreak);
-	currentTime = minToCentiseconds(currentBreak);
+	breakTime = minToCentiseconds(currentBreak);
 });
 
 //Start and Stop Timer
 $("#timer-go").click(function () {
-	timerStart();
+	testPom = currentTime;
+	interval = setInterval(decrement, 20);
 })
 
 $("#timer-stop").click(function () {
-	timerStop();
+	if (raceMode == false) {
+		clearInterval(interval);
+		$("#timer-holder").text(centisecToMinString(breakTime));
+		alert("Copy. Box, box, box.");
+		onDeck = "Track";
+		testPom = breakTime;
+		interval = setInterval(decrement, 20);
+	}
+	else if (raceMode = true) {
+		alert("Stay out! Stay out!");
+	}
+	
 })
 
+//Toggle Race Mode
+$("#toggle-holder").click(function () {
+	switch (raceMode) {
+		case true:
+			$("#toggle-holder").css("font-size", "18px");
+			$("#toggle-holder").text("Practice Mode");
+			raceMode = false;
+			break;
+		case false:
+			$("#toggle-holder").css("font-size", "20px");
+			$("#toggle-holder").text("Race Mode");
+			raceMode = true;
+			break;
+	}
+});
 
 
 //Functions
@@ -86,8 +117,8 @@ function place(n) {
 
 //Convert Centiseconds to Minutes
 function centisecToMinString(centiseconds) {
-	var min = centiseconds / 6000;
-	var sec = (centiseconds - (min * 6000)) / 100;
+	var min = Math.floor(centiseconds / 6000);
+	var sec = Math.floor((centiseconds - (min * 6000)) / 100);
 
 	return place(min) + ":" + place(sec) + ":" + place(centiseconds - (min * 6000) - (sec * 100));
 };
@@ -95,6 +126,27 @@ function centisecToMinString(centiseconds) {
 //Convert Minutes to Centiseconds
 function minToCentiseconds(minutes) {
 	return (minutes * 6000);
+}
+
+//Start Timer
+function decrement() {
+	if (testPom == 0) {
+		switch (onDeck) {
+			case "Pit":
+				testPom = breakTime;
+				onDeck = "Track";
+				break;
+			case "Track":
+				testPom = currentTime;
+				onDeck = "Pit";
+				break;
+		}	
+	}
+
+	else	{	
+		testPom -= 2;
+		$("#timer-holder").text(centisecToMinString(testPom));
+	}
 }
 
 
