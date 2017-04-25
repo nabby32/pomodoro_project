@@ -6,6 +6,7 @@ var workTime = 150000;
 var breakTime = 30000;
 var currentTime = workTime;
 var currentBreak = breakTime;
+var currentMin = $("#min").text();
 var testPom = currentTime;
 var interval = true;
 var onDeck = "Pit";
@@ -15,7 +16,6 @@ $("#timer-holder").text(centisecToMinString(workTime));
 
 //Timer Setting Buttons
 $("#min-up").click(function () {
-	var currentMin = $("#min").text();
 	if (currentMin < 60) {
 		currentMin ++;
 	}
@@ -66,28 +66,48 @@ $("#break-down").click(function () {
 
 //Start and Stop Timer
 $("#timer-go").click(function () {
-	testPom = currentTime;
-	interval = setInterval(decrement, 20);
+	if (testPom == minToCentiseconds(currentMin) || onDeck == "Track") {
+		testPom = currentTime;
+		//Clear Interval avoids doubling of speed if pressing go/stop alternately
+		clearInterval(interval);
+		alert("You are clear to join the track.")
+		interval = setInterval(decrement, 20);
+		onDeck = "Pit";
+	}
 })
 
 $("#timer-stop").click(function () {
-	if (raceMode == false) {
+	if (raceMode == false && onDeck == "Pit") {
 		clearInterval(interval);
 		$("#timer-holder").text(centisecToMinString(breakTime));
 		alert("Copy. Box, box, box.");
 		onDeck = "Track";
 		testPom = breakTime;
+		//Clear Interval avoids doubling of speed if pressing go/stop alternately
+		clearInterval(interval);
 		interval = setInterval(decrement, 20);
 	}
-	else if (raceMode = true) {
+	else if (raceMode == true) {
 		alert("Stay out! Stay out!");
+	}
+	else if (onDeck = "Track" && testPom != minToCentiseconds(currentBreak)) {
+		alert("We already have you going back on track in " + $("#timer-holder").text() + " minutes.");
 	}
 	
 })
 
+$("#restart").click(function() {
+	clearInterval(interval);
+	if (onDeck == "Pit" || onDeck == "Track") {
+		$("#timer-holder").text(centisecToMinString(currentTime));
+		testPom = minToCentiseconds(currentMin);
+	}
+})
+
 //Toggle Race Mode
 $("#toggle-holder").click(function () {
-	switch (raceMode) {
+	if (testPom == currentTime || onDeck == "Track") {
+	 switch (raceMode) {
 		case true:
 			$("#toggle-holder").css("font-size", "18px");
 			$("#toggle-holder").text("Practice Mode");
@@ -98,6 +118,7 @@ $("#toggle-holder").click(function () {
 			$("#toggle-holder").text("Race Mode");
 			raceMode = true;
 			break;
+	}
 	}
 });
 
