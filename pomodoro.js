@@ -6,9 +6,9 @@ var workTime = 150000;
 var breakTime = 30000;
 var currentTime = workTime;
 var currentBreak = breakTime;
-var currentMin = $("#min").text();
 var testPom = currentTime;
 var interval = true;
+var counting = false;
 var onDeck = "Pit";
 
 //Set Page Load Timer Value
@@ -16,27 +16,28 @@ $("#timer-holder").text(centisecToMinString(workTime));
 
 //Timer Setting Buttons
 $("#min-up").click(function () {
-	if (currentMin < 60) {
-		currentMin ++;
+	workTime = $("#min").text();
+	if (workTime < 60) {
+		workTime ++;
 	}
 	else {
 		alert("We need to limit sessions to an hour to avoid stress on the engine.")
 	}
-	$("#min").text(currentMin);
-	currentTime = minToCentiseconds(currentMin);
+	$("#min").text(workTime);
+	currentTime = minToCentiseconds(workTime);
 	$("#timer-holder").text(centisecToMinString(currentTime));
 });
 
 $("#min-down").click(function () {
-	var currentMin = $("#min").text();
-	if (currentMin > 5) {
-		currentMin --;
+	workTime = $("#min").text();
+	if (workTime > 5) {
+		workTime --;
 	}
 	else {
 		alert("We need you to go out for at least one hot lap.")
 	}
-	$("#min").text(currentMin);
-	currentTime = minToCentiseconds(currentMin);
+	$("#min").text(workTime);
+	currentTime = minToCentiseconds(workTime);
 	$("#timer-holder").text(centisecToMinString(currentTime));
 });
 
@@ -66,13 +67,14 @@ $("#break-down").click(function () {
 
 //Start and Stop Timer
 $("#timer-go").click(function () {
-	if (testPom == minToCentiseconds(currentMin) || onDeck == "Track") {
+	if (counting == false || onDeck == "Track") {
 		testPom = currentTime;
 		//Clear Interval avoids doubling of speed if pressing go/stop alternately
 		clearInterval(interval);
 		alert("You are clear to join the track.")
 		interval = setInterval(decrement, 20);
 		onDeck = "Pit";
+		counting = true;
 	}
 })
 
@@ -86,11 +88,12 @@ $("#timer-stop").click(function () {
 		//Clear Interval avoids doubling of speed if pressing go/stop alternately
 		clearInterval(interval);
 		interval = setInterval(decrement, 20);
+		counting == false;
 	}
 	else if (raceMode == true) {
 		alert("Stay out! Stay out!");
 	}
-	else if (onDeck = "Track" && testPom != minToCentiseconds(currentBreak)) {
+	else if (onDeck = "Track") {
 		alert("We already have you going back on track in " + $("#timer-holder").text() + " minutes.");
 	}
 	
@@ -100,13 +103,14 @@ $("#restart").click(function() {
 	clearInterval(interval);
 	if (onDeck == "Pit" || onDeck == "Track") {
 		$("#timer-holder").text(centisecToMinString(currentTime));
-		testPom = minToCentiseconds(currentMin);
+		testPom = minToCentiseconds(currentTime);
+		counting = false;
 	}
 })
 
 //Toggle Race Mode
 $("#toggle-holder").click(function () {
-	if (testPom == currentTime || onDeck == "Track") {
+	if (counting == false || onDeck == "Track") {
 	 switch (raceMode) {
 		case true:
 			$("#toggle-holder").css("font-size", "18px");
@@ -122,9 +126,7 @@ $("#toggle-holder").click(function () {
 	}
 });
 
-
 //Functions
-
 //Leading zero
 function place(n) {
 	if (n < 10) {
@@ -136,7 +138,7 @@ function place(n) {
 	}
 };
 
-//Convert Centiseconds to Minutes
+//Convert Centiseconds to Timer Minutes
 function centisecToMinString(centiseconds) {
 	var min = Math.floor(centiseconds / 6000);
 	var sec = Math.floor((centiseconds - (min * 6000)) / 100);
@@ -163,12 +165,16 @@ function decrement() {
 				break;
 		}	
 	}
-
 	else	{	
 		testPom -= 2;
 		$("#timer-holder").text(centisecToMinString(testPom));
+		//Turn timer red if timer goes under 30 seconds
+		if (testPom < 3001) {
+			$("#timer-holder").css("color", "red");
+		}
+		else if (testPom > 3000) {
+			$("#timer-holder").css("color", "black");
+		}
 	}
 }
-
-
 });
